@@ -19,13 +19,18 @@ class CanvasWidget(Widget):
         with self.canvas:
             # Specify the color of the shape to draw
             Color(*get_color_from_hex('#0080FF80'))
-            # Draw the circle; coords (x,y), radius=25, border_width=4
-            Line(circle=(touch.x, touch.y, 25), width=4)
+            touch.ud['current_line'] = Line(points=(touch.x, touch.y), width=2)
+
+    def on_touch_move(self, touch):
+        if 'current_line' in touch.ud:
+            touch.ud['current_line'].points += (touch.x, touch.y)
 
     def clear_canvas(self):
+        # Save the children widgets (AKA, the 'DELETE' button)
         saved = self.children[:]
         self.clear_widgets()
         self.canvas.clear()
+        # Restore the saved widgets (AKA, the 'DELETE' button)
         for widget in saved:
             self.add_widget(widget)
 
