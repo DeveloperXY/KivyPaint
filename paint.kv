@@ -39,3 +39,28 @@
     background_normal: 'img/color_button_normal.png'
     background_down: 'img/color_button_down.png'
     border: (3,3,3,3)
+
+<LineWidthButton@ColorButton>:
+    group: 'line_width'
+    on_release: app.canvas_widget.set_line_width(self.text)
+    color: C('#2C3E50')
+    background_color: C('#ECF0F1')
+
+BoxLayout:
+    orientation: 'vertical'
+    padding: 2
+    spacing: 2
+    x: 0
+    top: root.top
+    width: 80
+    height: 110
+
+    LineWidthButton:
+        text: 'Thin'
+
+    LineWidthButton:
+        text: 'Normal'
+        state: 'down'
+
+    LineWidthButton:
+        text: 'Thick'
