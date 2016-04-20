@@ -32,6 +32,8 @@ class CanvasWidget(Widget):
         for widget in saved:
             self.add_widget(widget)
 
+        self.set_color(get_color_from_hex('#d35400'))
+
     def set_color(self, new_color):
         with self.canvas:
             Color(*new_color)
