@@ -8,7 +8,8 @@ from utils.cursor import *
 
 
 class CanvasWidget(Widget):
-    pass
+    def on_touch_down(self, touch):
+        print touch.x, touch.y
 
 
 class PaintApp(App):
@@ -22,10 +23,13 @@ class PaintApp(App):
             except:
                 pass
 
+        return CanvasWidget()
+
 
 if __name__ == '__main__':
     Config.set('graphics', 'width', 960)
     Config.set('graphics', 'height', 540)  # 16:9
+    # Config.set('input', 'mouse', 'mouse,disable_multitouch')
     # Config.set('graphics', 'resizable', 0)  # Disable window resizing
 
     from kivy.core.window import Window
