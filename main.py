@@ -22,6 +22,13 @@ class CanvasWidget(Widget):
             # Draw the circle; coords (x,y), radius=25, border_width=4
             Line(circle=(touch.x, touch.y, 25), width=4)
 
+    def clear_canvas(self):
+        saved = self.children[:]
+        self.clear_widgets()
+        self.canvas.clear()
+        for widget in saved:
+            self.add_widget(widget)
+
 
 class PaintApp(App):
     def build(self):
