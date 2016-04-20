@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.base import EventLoop
 from kivy.config import Config
+from kivy.graphics import Color, Line
 from kivy.uix.widget import Widget
 from kivy.utils import get_color_from_hex
 
@@ -9,7 +10,11 @@ from utils.cursor import *
 
 class CanvasWidget(Widget):
     def on_touch_down(self, touch):
-        print touch.x, touch.y
+        with self.canvas:
+            # Specify the color of the shape to draw
+            Color(*get_color_from_hex('#0080FF80'))
+            # Draw the circle; coords (x,y), radius=25, border_width=4
+            Line(circle=(touch.x, touch.y, 25), width=4)
 
 
 class PaintApp(App):
