@@ -1,66 +1,118 @@
 #:import C kivy.utils.get_color_from_hex
 
+<RadioButton>
+    background_normal: 'img/color_button_normal.png'
+    background_down: 'img/color_button_down.png'
+    border: (3, 3, 3, 3)
+
+<ColorButton@RadioButton>:
+    group: 'color'
+    on_release: app.canvas_widget.set_color(self.background_color)
+
+<LineWidthButton@RadioButton>:
+    group: 'line_width'
+    on_release: app.canvas_widget.set_line_width(self.text)
+    color: C('#2c3e50')
+    background_color: C('#ecf0f1')
+
 <CanvasWidget>:
     Button:
         text: 'Delete'
+        font_size: 20
+        on_release: root.clear_canvas()
+        background_normal: 'img/red_button_normal.png'
+        background_down: 'img/red_button_down.png'
+        border: (2, 2, 2, 2)
         right: root.right
         top: root.top
         width: 80
         height: 40
-        on_release: root.clear_canvas()
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 2
+        spacing: 2
+        x: 0
+        top: root.top
+        width: 80
+        height: 110
+
+        LineWidthButton:
+            text: 'Thin'
+
+        LineWidthButton:
+            text: 'Normal'
+            state: 'down'
+
+        LineWidthButton:
+            text: 'Thick'
 
     BoxLayout:
         orientation: 'horizontal'
-        padding: 3
-        spacing: 3
-        x: 0 # bottom-
-        y: 0 # left corner
+        padding: 2
+        spacing: 2
+        x: 0
+        y: 0
         width: root.width
         height: 40
 
         ColorButton:
             background_color: C('#2980b9')
+
+        ColorButton:
+            background_color: C('#16a085')
+
+        ColorButton:
+            background_color: C('#27ae60')
+
+        ColorButton:
+            background_color: C('#f39c12')
+
+        ColorButton:
+            background_color: C('#d35400')
             state: 'down'
 
         ColorButton:
-            background_color: C('#16A085')
+            background_color: C('#c0392b')
 
         ColorButton:
-            background_color: C('#27AE60')
+            background_color: C('#8e44ad')
 
-<Button>:
-    background_normal: 'img/red_button_normal.png'
-    background_down: 'img/red_button_down.png'
-    border: [2] * 4
+        ColorButton:
+            background_color: C('#bdc3c7')
 
-<ColorButton@Button>:
-    group: 'color'
-    on_release: app.canvas_widget.set_color(self.background_color)
-    background_normal: 'img/color_button_normal.png'
-    background_down: 'img/color_button_down.png'
-    border: (3,3,3,3)
+        ColorButton:
+            background_color: C('#7f8c8d')
 
-<LineWidthButton@ColorButton>:
-    group: 'line_width'
-    on_release: app.canvas_widget.set_line_width(self.text)
-    color: C('#2C3E50')
-    background_color: C('#ECF0F1')
+        ColorButton:
+            background_color: C('#2c3e50')
 
-BoxLayout:
-    orientation: 'vertical'
-    padding: 2
-    spacing: 2
-    x: 0
-    top: root.top
-    width: 80
-    height: 110
+        ColorButton:
+            background_color: C('#3498db')
 
-    LineWidthButton:
-        text: 'Thin'
+        ColorButton:
+            background_color: C('#1abc9c')
 
-    LineWidthButton:
-        text: 'Normal'
-        state: 'down'
+        ColorButton:
+            background_color: C('#2ecc71')
 
-    LineWidthButton:
-        text: 'Thick'
+        ColorButton:
+            background_color: C('#f1c40f')
+
+        ColorButton:
+            background_color: C('#e67e22')
+
+        ColorButton:
+            background_color: C('#e74c3c')
+
+        ColorButton:
+            background_color: C('#9b59b6')
+
+        ColorButton:
+            background_color: C('#ecf0f1')
+
+        ColorButton:
+            background_color: C('#95a5a6')
+
+        ColorButton:
+            background_color: C('#34495e')
