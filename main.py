@@ -10,6 +10,12 @@ from utils.cursor import *
 
 class CanvasWidget(Widget):
     def on_touch_down(self, touch):
+        # Check if any of the children components reacted to the click event
+        if Widget.on_touch_down(self, touch):
+            # A component has reacted to the click, so don't
+            # draw the circle
+            return
+
         with self.canvas:
             # Specify the color of the shape to draw
             Color(*get_color_from_hex('#0080FF80'))
