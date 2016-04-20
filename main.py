@@ -1,5 +1,7 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.core.window import Window
+from kivy.utils import get_color_from_hex
 
 
 class CanvasWidget(Widget):
@@ -12,4 +14,5 @@ class PaintApp(App):
 
 
 if __name__ == '__main__':
+    Window.clearcolor = get_color_from_hex('#FFFFFF')
     PaintApp().run()
