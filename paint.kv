@@ -7,6 +7,24 @@
         height: 40
         on_release: root.clear_canvas()
 
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 3
+        spacing: 3
+        x: 0 # bottom-
+        y: 0 # left corner
+        width: root.width
+        height: 40
+
+        RadioButton:
+            group: 'color'
+            text: 'Red'
+
+        RadioButton:
+            group: 'color'
+            text: 'Blue'
+            state: 'down'
+
 <Button>:
     background_normal: 'img/red_button_normal.png'
     background_down: 'img/red_button_down.png'
