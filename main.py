@@ -1,13 +1,10 @@
 from kivy.app import App
+from kivy.base import EventLoop
 from kivy.config import Config
 from kivy.uix.widget import Widget
-
-Config.set('graphics', 'width', 960)
-Config.set('graphics', 'height', 540)  # 16:9
-# Config.set('graphics', 'resizable', 0)  # Disable window resizing
-
-from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
+
+from utils.cursor import *
 
 
 class CanvasWidget(Widget):
@@ -16,9 +13,22 @@ class CanvasWidget(Widget):
 
 class PaintApp(App):
     def build(self):
-        return CanvasWidget()
+        EventLoop.ensure_window()
+        if EventLoop.window.__class__.__name__.endswith('Pygame'):
+            try:
+                from pygame import mouse
+                a, b = pygame_compile_cursor()
+                mouse.set_cursor((24, 24), (9, 9), a, b)
+            except:
+                pass
 
 
 if __name__ == '__main__':
+    Config.set('graphics', 'width', 960)
+    Config.set('graphics', 'height', 540)  # 16:9
+    # Config.set('graphics', 'resizable', 0)  # Disable window resizing
+
+    from kivy.core.window import Window
+
     Window.clearcolor = get_color_from_hex('#FFFFFF')
     PaintApp().run()
