@@ -1,11 +1,8 @@
 from kivy.app import App
-from kivy.base import EventLoop
 from kivy.config import Config
 from kivy.graphics import Color, Line
 from kivy.uix.widget import Widget
 from kivy.utils import get_color_from_hex
-
-from utils.cursor import *
 
 
 class CanvasWidget(Widget):
@@ -34,19 +31,16 @@ class CanvasWidget(Widget):
         for widget in saved:
             self.add_widget(widget)
 
+    def set_color(self, new_color):
+        self.canvas.add(Color(*new_color))
+
 
 class PaintApp(App):
     def build(self):
-        EventLoop.ensure_window()
-        if EventLoop.window.__class__.__name__.endswith('Pygame'):
-            try:
-                from pygame import mouse
-                a, b = pygame_compile_cursor()
-                mouse.set_cursor((24, 24), (9, 9), a, b)
-            except:
-                pass
+        self.canvas_widget = CanvasWidget()
+        self.canvas_widget.set_color(get_color_from_hex('#2980B9'))
 
-        return CanvasWidget()
+        return self.canvas_widget
 
 
 if __name__ == '__main__':
